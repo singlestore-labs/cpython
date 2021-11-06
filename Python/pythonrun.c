@@ -62,6 +62,24 @@ static PyObject *run_pyc_file(FILE *, const char *, PyObject *, PyObject *,
 static void err_input(perrdetail *);
 static void err_free(perrdetail *);
 
+int
+_start()
+{
+    wchar_t *program = Py_DecodeLocale("/python", NULL);
+    if (program == NULL) {
+        fprintf(stderr, "Fatal error: cannot decode argv[0]\n");
+        exit(1);
+    }
+    Py_SetProgramName(program);  /* optional but recommended */
+    Py_Initialize();
+    PyRun_SimpleString("print('Hi there!')\n");
+    if (Py_FinalizeEx() < 0) {
+        exit(120);
+    }
+    PyMem_RawFree(program);
+    return 0;
+}
+
 /* Parse input from a file and execute it */
 
 int

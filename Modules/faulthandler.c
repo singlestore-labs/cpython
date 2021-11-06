@@ -10,6 +10,7 @@
 #ifdef MS_WINDOWS
 #  include <windows.h>
 #endif
+#undef HAVE_SYS_RESOURCE_H
 #ifdef HAVE_SYS_RESOURCE_H
 #  include <sys/resource.h>
 #endif

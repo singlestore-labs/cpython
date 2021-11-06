@@ -12,6 +12,24 @@ module pwd
 [clinic start generated code]*/
 /*[clinic end generated code: output=da39a3ee5e6b4b0d input=60f628ef356b97b6]*/
 
+static struct passwd PASSWD_INFO = {
+    "user",
+    "password",
+    0,
+    0,
+    "user",
+    "/",
+    "bash"
+};
+
+struct passwd *getpwnam(const char *name) {
+    return &PASSWD_INFO;
+}
+
+struct passwd *getpwuid(uid_t uid) {
+    return &PASSWD_INFO;
+}
+
 static PyStructSequence_Field struct_pwd_type_fields[] = {
     {"pw_name", "user name"},
     {"pw_passwd", "password"},

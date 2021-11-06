@@ -42,6 +42,10 @@ _Py_IDENTIFIER(stdin);
 _Py_IDENTIFIER(stdout);
 _Py_IDENTIFIER(stderr);
 
+int dup(int x) {
+	return -1;
+}
+
 #ifdef __cplusplus
 extern "C" {
 #endif

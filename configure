@@ -3256,6 +3256,9 @@ then
 	*-*-cygwin*)
 		ac_sys_system=Cygwin
 		;;
+	wasm32-*-*)
+		ac_sys_system=Wasm32
+		;;
 	*)
 		# for now, limit cross builds to known configurations
 		MACHDEP="unknown"
@@ -3300,6 +3303,9 @@ if test "$cross_compiling" = yes; then
 		;;
 	*-*-cygwin*)
 		_host_cpu=
+		;;
+	wasm32-*-*)
+		ac_sys_system=Wasm32
 		;;
 	*)
 		# for now, limit cross builds to known configurations
@@ -6320,14 +6326,13 @@ esac
   fi
 fi
 
-if test "$cross_compiling" = yes; then
-    case "$READELF" in
-	readelf|:)
-	as_fn_error $? "readelf for the host is required for cross builds" "$LINENO" 5
-	;;
-    esac
-fi
-
+#if test "$cross_compiling" = yes; then
+#    case "$READELF" in
+#	readelf|:)
+#	as_fn_error $? "readelf for the host is required for cross builds" "$LINENO" 5
+#	;;
+#    esac
+#fi
 
 
 case $MACHDEP in

@@ -16,6 +16,8 @@
 
 #define BADEXIT -1
 
+#define F_DUPFD 0
+
 int
 dup2(int fd1, int fd2)
 {
