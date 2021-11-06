@@ -3307,6 +3307,9 @@ then
 	*-*-vxworks*)
 	    ac_sys_system=VxWorks
 	    ;;
+	wasm32-*-*)
+		ac_sys_system=Wasm32
+		;;
 	*)
 		# for now, limit cross builds to known configurations
 		MACHDEP="unknown"
@@ -3356,6 +3359,8 @@ if test "$cross_compiling" = yes; then
 		;;
 	*-*-vxworks*)
 		_host_cpu=$host_cpu
+	wasm32-*-*)
+		ac_sys_system=Wasm32
 		;;
 	*)
 		# for now, limit cross builds to known configurations
@@ -6208,14 +6213,13 @@ esac
   fi
 fi
 
-if test "$cross_compiling" = yes; then
-    case "$READELF" in
-	readelf|:)
-	as_fn_error $? "readelf for the host is required for cross builds" "$LINENO" 5
-	;;
-    esac
-fi
-
+#if test "$cross_compiling" = yes; then
+#    case "$READELF" in
+#	readelf|:)
+#	as_fn_error $? "readelf for the host is required for cross builds" "$LINENO" 5
+#	;;
+#    esac
+#fi
 
 
 case $MACHDEP in
@@ -19002,4 +19006,3 @@ if test "$Py_OPT" = 'false' -a "$Py_DEBUG" != 'true'; then
     echo "" >&6
     echo "" >&6
 fi
-

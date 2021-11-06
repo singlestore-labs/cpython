@@ -46,6 +46,10 @@ _Py_IDENTIFIER(stdout);
 _Py_IDENTIFIER(stderr);
 _Py_IDENTIFIER(threading);
 
+int dup(int x) {
+	return -1;
+}
+
 #ifdef __cplusplus
 extern "C" {
 #endif

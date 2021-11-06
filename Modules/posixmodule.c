@@ -312,24 +312,24 @@ corresponding Unix manual entries for more information on calls.");
 #    define fsync _commit
 #  else
      /* Unix functions that the configure script doesn't check for */
-#    ifndef __VXWORKS__
-#      define HAVE_EXECV      1
-#      define HAVE_FORK       1
-#      if defined(__USLC__) && defined(__SCO_VERSION__)       /* SCO UDK Compiler */
-#        define HAVE_FORK1      1
-#      endif
-#    endif
-#    define HAVE_GETEGID    1
-#    define HAVE_GETEUID    1
-#    define HAVE_GETGID     1
-#    define HAVE_GETPPID    1
-#    define HAVE_GETUID     1
-#    define HAVE_KILL       1
-#    define HAVE_OPENDIR    1
-#    define HAVE_PIPE       1
-#    define HAVE_SYSTEM     1
-#    define HAVE_WAIT       1
-#    define HAVE_TTYNAME    1
+// #    ifndef __VXWORKS__
+// #      define HAVE_EXECV      1
+// #      define HAVE_FORK       1
+// #      if defined(__USLC__) && defined(__SCO_VERSION__)       /* SCO UDK Compiler */
+// #        define HAVE_FORK1      1
+// #      endif
+// #    endif
+// #    define HAVE_GETEGID    1
+// #    define HAVE_GETEUID    1
+// #    define HAVE_GETGID     1
+// #    define HAVE_GETPPID    1
+// #    define HAVE_GETUID     1
+// #    define HAVE_KILL       1
+// #    define HAVE_OPENDIR    1
+// #    define HAVE_PIPE       1
+// #    define HAVE_SYSTEM     1
+// #    define HAVE_WAIT       1
+// #    define HAVE_TTYNAME    1
 #  endif  /* _MSC_VER */
 #endif  /* ! __WATCOMC__ || __QNX__ */
 
@@ -3259,8 +3259,8 @@ os_chmod_impl(PyObject *module, path_t *path, int mode, int dir_fd,
         }
     }
     else
-#endif /* HAVE_FHCMODAT */
-        result = chmod(path->narrow, mode);
+#endif
+        result = -1 /*chmod(path->narrow, mode)*/;
     Py_END_ALLOW_THREADS
 
     if (result) {
@@ -4839,7 +4839,7 @@ static PyObject *
 os_umask_impl(PyObject *module, int mask)
 /*[clinic end generated code: output=a2e33ce3bc1a6e33 input=ab6bfd9b24d8a7e8]*/
 {
-    int i = (int)umask(mask);
+    int i = (int)-1 /*umask(mask)*/;
     if (i < 0)
         return posix_error();
     return PyLong_FromLong((long)i);
