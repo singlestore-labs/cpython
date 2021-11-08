@@ -244,7 +244,7 @@ BaseException_get_context(PyObject *self, void *Py_UNUSED(ignored)) {
 }
 
 static int
-BaseException_set_context(PyObject *self, PyObject *arg) {
+BaseException_set_context(PyObject *self, PyObject *arg, void *Py_UNUSED(ignored)) {
     if (arg == NULL) {
         PyErr_SetString(PyExc_TypeError, "__context__ may not be deleted");
         return -1;
@@ -271,7 +271,7 @@ BaseException_get_cause(PyObject *self, void *Py_UNUSED(ignored)) {
 }
 
 static int
-BaseException_set_cause(PyObject *self, PyObject *arg) {
+BaseException_set_cause(PyObject *self, PyObject *arg, void *Py_UNUSED(ignored)) {
     if (arg == NULL) {
         PyErr_SetString(PyExc_TypeError, "__cause__ may not be deleted");
         return -1;

@@ -617,7 +617,7 @@ FutureObj_get_blocking(FutureObj *fut, void *Py_UNUSED(ignored))
 }
 
 static int
-FutureObj_set_blocking(FutureObj *fut, PyObject *val)
+FutureObj_set_blocking(FutureObj *fut, PyObject *val, void *Py_UNUSED(ignored))
 {
     int is_true = PyObject_IsTrue(val);
     if (is_true < 0) {
@@ -1366,7 +1366,7 @@ TaskObj_get_log_destroy_pending(TaskObj *task, void *Py_UNUSED(ignored))
 }
 
 static int
-TaskObj_set_log_destroy_pending(TaskObj *task, PyObject *val)
+TaskObj_set_log_destroy_pending(TaskObj *task, PyObject *val, void *Py_UNUSED(ignored))
 {
     int is_true = PyObject_IsTrue(val);
     if (is_true < 0) {

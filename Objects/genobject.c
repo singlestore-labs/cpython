@@ -673,7 +673,7 @@ gen_get_name(PyGenObject *op, void *Py_UNUSED(ignored))
 }
 
 static int
-gen_set_name(PyGenObject *op, PyObject *value)
+gen_set_name(PyGenObject *op, PyObject *value, void *Py_UNUSED(ignored))
 {
     /* Not legal to del gen.gi_name or to set it to anything
      * other than a string object. */
@@ -695,7 +695,7 @@ gen_get_qualname(PyGenObject *op, void *Py_UNUSED(ignored))
 }
 
 static int
-gen_set_qualname(PyGenObject *op, PyObject *value)
+gen_set_qualname(PyGenObject *op, PyObject *value, void *Py_UNUSED(ignored))
 {
     /* Not legal to del gen.__qualname__ or to set it to anything
      * other than a string object. */

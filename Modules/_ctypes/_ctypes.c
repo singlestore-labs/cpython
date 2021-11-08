@@ -1089,7 +1089,7 @@ PyTypeObject PyCPointerType_Type = {
 */
 
 static int
-CharArray_set_raw(CDataObject *self, PyObject *value)
+CharArray_set_raw(CDataObject *self, PyObject *value, void *Py_UNUSED(ignored))
 {
     char *ptr;
     Py_ssize_t size;
@@ -1132,7 +1132,7 @@ CharArray_get_value(CDataObject *self, void *Py_UNUSED(ignored))
 }
 
 static int
-CharArray_set_value(CDataObject *self, PyObject *value)
+CharArray_set_value(CDataObject *self, PyObject *value, void *Py_UNUSED(ignored))
 {
     char *ptr;
     Py_ssize_t size;
@@ -1188,7 +1188,7 @@ WCharArray_get_value(CDataObject *self, void *Py_UNUSED(ignored))
 }
 
 static int
-WCharArray_set_value(CDataObject *self, PyObject *value)
+WCharArray_set_value(CDataObject *self, PyObject *value, void *Py_UNUSED(ignored))
 {
     Py_ssize_t result = 0;
     Py_UNICODE *wstr;
@@ -2961,7 +2961,7 @@ GenericPyCData_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 */
 
 static int
-PyCFuncPtr_set_errcheck(PyCFuncPtrObject *self, PyObject *ob)
+PyCFuncPtr_set_errcheck(PyCFuncPtrObject *self, PyObject *ob, void *Py_UNUSED(ignored))
 {
     if (ob && !PyCallable_Check(ob)) {
         PyErr_SetString(PyExc_TypeError,
@@ -2985,7 +2985,7 @@ PyCFuncPtr_get_errcheck(PyCFuncPtrObject *self, void *Py_UNUSED(ignored))
 }
 
 static int
-PyCFuncPtr_set_restype(PyCFuncPtrObject *self, PyObject *ob)
+PyCFuncPtr_set_restype(PyCFuncPtrObject *self, PyObject *ob, void *Py_UNUSED(ignored))
 {
     if (ob == NULL) {
         Py_CLEAR(self->restype);
@@ -3025,7 +3025,7 @@ PyCFuncPtr_get_restype(PyCFuncPtrObject *self, void *Py_UNUSED(ignored))
 }
 
 static int
-PyCFuncPtr_set_argtypes(PyCFuncPtrObject *self, PyObject *ob)
+PyCFuncPtr_set_argtypes(PyCFuncPtrObject *self, PyObject *ob, void *Py_UNUSED(ignored))
 {
     PyObject *converters;
 
@@ -4588,7 +4588,7 @@ PyCArrayType_from_ctype(PyObject *itemtype, Py_ssize_t length)
 */
 
 static int
-Simple_set_value(CDataObject *self, PyObject *value)
+Simple_set_value(CDataObject *self, PyObject *value, void *Py_UNUSED(ignored))
 {
     PyObject *result;
     StgDictObject *dict = PyObject_stgdict((PyObject *)self);
