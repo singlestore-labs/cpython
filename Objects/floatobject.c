@@ -825,7 +825,7 @@ float_bool(PyFloatObject *v)
 }
 
 static PyObject *
-float_is_integer(PyObject *v)
+float_is_integer(PyObject *v, void *Py_UNUSED(ignored))
 {
     double x = PyFloat_AsDouble(v);
     PyObject *o;
@@ -877,7 +877,7 @@ float_is_finite(PyObject *v)
 #endif
 
 static PyObject *
-float_trunc(PyObject *v)
+float_trunc(PyObject *v, void *Py_UNUSED(ignored))
 {
     double x = PyFloat_AsDouble(v);
     double wholepart;           /* integral portion of x, rounded toward 0 */
@@ -1156,7 +1156,7 @@ hex_from_char(char c) {
 #define TOHEX_NBITS DBL_MANT_DIG + 3 - (DBL_MANT_DIG+2)%4
 
 static PyObject *
-float_hex(PyObject *v)
+float_hex(PyObject *v, void *Py_UNUSED(ignored))
 {
     double x, m;
     int e, shift, i, si, esign;
@@ -1602,7 +1602,7 @@ float_subtype_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 }
 
 static PyObject *
-float_getnewargs(PyFloatObject *v)
+float_getnewargs(PyFloatObject *v, void *Py_UNUSED(ignored))
 {
     return Py_BuildValue("(d)", v->ob_fval);
 }

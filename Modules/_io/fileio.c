@@ -1113,7 +1113,7 @@ _io_FileIO_isatty_impl(fileio *self)
 }
 
 static PyObject *
-fileio_getstate(fileio *self)
+fileio_getstate(fileio *self, void *Py_UNUSED(ignored))
 {
     PyErr_Format(PyExc_TypeError,
                  "cannot serialize '%s' object", Py_TYPE(self)->tp_name);

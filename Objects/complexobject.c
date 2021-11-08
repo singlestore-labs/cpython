@@ -674,7 +674,7 @@ complex_float(PyObject *v)
 }
 
 static PyObject *
-complex_conjugate(PyObject *self)
+complex_conjugate(PyObject *self, void *Py_UNUSED(ignored))
 {
     Py_complex c;
     c = ((PyComplexObject *)self)->cval;
@@ -688,7 +688,7 @@ PyDoc_STRVAR(complex_conjugate_doc,
 "Return the complex conjugate of its argument. (3-4j).conjugate() == 3+4j.");
 
 static PyObject *
-complex_getnewargs(PyComplexObject *v)
+complex_getnewargs(PyComplexObject *v, void *Py_UNUSED(ignored))
 {
     Py_complex c = v->cval;
     return Py_BuildValue("(dd)", c.real, c.imag);

@@ -1788,7 +1788,7 @@ mro_implementation(PyTypeObject *type)
 }
 
 static PyObject *
-mro_external(PyObject *self)
+mro_external(PyObject *self, void *Py_UNUSED(ignored))
 {
     PyTypeObject *type = (PyTypeObject *)self;
 

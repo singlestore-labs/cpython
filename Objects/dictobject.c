@@ -2611,7 +2611,7 @@ _PyDict_MergeEx(PyObject *a, PyObject *b, int override)
 }
 
 static PyObject *
-dict_copy(PyDictObject *mp)
+dict_copy(PyDictObject *mp, void *Py_UNUSED(ignored))
 {
     return PyDict_Copy((PyObject*)mp);
 }
@@ -2941,7 +2941,7 @@ dict_setdefault(PyDictObject *mp, PyObject *args)
 }
 
 static PyObject *
-dict_clear(PyDictObject *mp)
+dict_clear(PyDictObject *mp, void *Py_UNUSED(ignored))
 {
     PyDict_Clear((PyObject *)mp);
     Py_RETURN_NONE;
@@ -2959,7 +2959,7 @@ dict_pop(PyDictObject *mp, PyObject *args)
 }
 
 static PyObject *
-dict_popitem(PyDictObject *mp)
+dict_popitem(PyDictObject *mp, void *Py_UNUSED(ignored))
 {
     Py_ssize_t i, j;
     PyDictKeyEntry *ep0, *ep;
@@ -3089,7 +3089,7 @@ _PyDict_KeysSize(PyDictKeysObject *keys)
 }
 
 static PyObject *
-dict_sizeof(PyDictObject *mp)
+dict_sizeof(PyDictObject *mp, void *Py_UNUSED(ignored))
 {
     return PyLong_FromSsize_t(_PyDict_SizeOf(mp));
 }
@@ -3436,7 +3436,7 @@ dictiter_traverse(dictiterobject *di, visitproc visit, void *arg)
 }
 
 static PyObject *
-dictiter_len(dictiterobject *di)
+dictiter_len(dictiterobject *di, void *Py_UNUSED(ignored))
 {
     Py_ssize_t len = 0;
     if (di->di_dict != NULL && di->di_used == di->di_dict->ma_used)
@@ -3448,7 +3448,7 @@ PyDoc_STRVAR(length_hint_doc,
              "Private method returning an estimate of len(list(it)).");
 
 static PyObject *
-dictiter_reduce(dictiterobject *di);
+dictiter_reduce(dictiterobject *di, void *Py_UNUSED(ignored));
 
 PyDoc_STRVAR(reduce_doc, "Return state information for pickling.");
 
@@ -3731,7 +3731,7 @@ PyTypeObject PyDictIterItem_Type = {
 
 
 static PyObject *
-dictiter_reduce(dictiterobject *di)
+dictiter_reduce(dictiterobject *di, void *Py_UNUSED(ignored))
 {
     PyObject *list;
     dictiterobject tmp;
@@ -4161,7 +4161,7 @@ PyTypeObject PyDictKeys_Type = {
 };
 
 static PyObject *
-dictkeys_new(PyObject *dict)
+dictkeys_new(PyObject *dict, void *Py_UNUSED(ignored))
 {
     return _PyDictView_New(dict, &PyDictKeys_Type);
 }
@@ -4247,7 +4247,7 @@ PyTypeObject PyDictItems_Type = {
 };
 
 static PyObject *
-dictitems_new(PyObject *dict)
+dictitems_new(PyObject *dict, void *Py_UNUSED(ignored))
 {
     return _PyDictView_New(dict, &PyDictItems_Type);
 }
@@ -4312,7 +4312,7 @@ PyTypeObject PyDictValues_Type = {
 };
 
 static PyObject *
-dictvalues_new(PyObject *dict)
+dictvalues_new(PyObject *dict, void *Py_UNUSED(ignored))
 {
     return _PyDictView_New(dict, &PyDictValues_Type);
 }

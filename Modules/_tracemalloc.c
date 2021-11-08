@@ -1169,7 +1169,7 @@ PyDoc_STRVAR(tracemalloc_is_tracing_doc,
 
 
 static PyObject*
-py_tracemalloc_is_tracing(PyObject *self)
+py_tracemalloc_is_tracing(PyObject *self, void *Py_UNUSED(ignored))
 {
     return PyBool_FromLong(tracemalloc_config.tracing);
 }
@@ -1181,7 +1181,7 @@ PyDoc_STRVAR(tracemalloc_clear_traces_doc,
 
 
 static PyObject*
-py_tracemalloc_clear_traces(PyObject *self)
+py_tracemalloc_clear_traces(PyObject *self, void *Py_UNUSED(ignored))
 {
     if (!tracemalloc_config.tracing)
         Py_RETURN_NONE;
@@ -1540,7 +1540,7 @@ PyDoc_STRVAR(tracemalloc_stop_doc,
 
 
 static PyObject*
-py_tracemalloc_stop(PyObject *self)
+py_tracemalloc_stop(PyObject *self, void *Py_UNUSED(ignored))
 {
     tracemalloc_stop();
     Py_RETURN_NONE;
@@ -1557,7 +1557,7 @@ PyDoc_STRVAR(tracemalloc_get_traceback_limit_doc,
     "the most recent frame: the limit is 1.");
 
 static PyObject*
-py_tracemalloc_get_traceback_limit(PyObject *self)
+py_tracemalloc_get_traceback_limit(PyObject *self, void *Py_UNUSED(ignored))
 {
     return PyLong_FromLong(tracemalloc_config.max_nframe);
 }
@@ -1570,7 +1570,7 @@ PyDoc_STRVAR(tracemalloc_get_tracemalloc_memory_doc,
     "used internally to trace memory allocations.");
 
 static PyObject*
-tracemalloc_get_tracemalloc_memory(PyObject *self)
+tracemalloc_get_tracemalloc_memory(PyObject *self, void *Py_UNUSED(ignored))
 {
     size_t size;
     PyObject *size_obj;
@@ -1594,7 +1594,7 @@ PyDoc_STRVAR(tracemalloc_get_traced_memory_doc,
     "by the tracemalloc module as a tuple: (current: int, peak: int).");
 
 static PyObject*
-tracemalloc_get_traced_memory(PyObject *self)
+tracemalloc_get_traced_memory(PyObject *self, void *Py_UNUSED(ignored))
 {
     Py_ssize_t size, peak_size;
     PyObject *size_obj, *peak_size_obj;

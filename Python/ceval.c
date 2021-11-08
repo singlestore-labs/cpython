@@ -121,7 +121,7 @@ static int pcall[PCALL_NUM];
 #define PCALL(POS) pcall[POS]++
 
 PyObject *
-PyEval_GetCallStats(PyObject *self)
+PyEval_GetCallStats(PyObject *self, void *Py_UNUSED(ignored))
 {
     return Py_BuildValue("iiiiiiiiiii",
                          pcall[0], pcall[1], pcall[2], pcall[3],
@@ -132,7 +132,7 @@ PyEval_GetCallStats(PyObject *self)
 #define PCALL(O)
 
 PyObject *
-PyEval_GetCallStats(PyObject *self)
+PyEval_GetCallStats(PyObject *self, void *Py_UNUSED(ignored))
 {
     Py_INCREF(Py_None);
     return Py_None;

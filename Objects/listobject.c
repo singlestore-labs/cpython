@@ -758,14 +758,14 @@ listinsert(PyListObject *self, PyObject *args)
 }
 
 static PyObject *
-listclear(PyListObject *self)
+listclear(PyListObject *self, void *Py_UNUSED(ignored))
 {
     list_clear(self);
     Py_RETURN_NONE;
 }
 
 static PyObject *
-listcopy(PyListObject *self)
+listcopy(PyListObject *self, void *Py_UNUSED(ignored))
 {
     return list_slice(self, 0, Py_SIZE(self));
 }
@@ -2100,7 +2100,7 @@ PyList_Sort(PyObject *v)
 }
 
 static PyObject *
-listreverse(PyListObject *self)
+listreverse(PyListObject *self, void *Py_UNUSED(ignored))
 {
     if (Py_SIZE(self) > 1)
         reverse_slice(self->ob_item, self->ob_item + Py_SIZE(self));
@@ -2322,7 +2322,7 @@ list_init(PyListObject *self, PyObject *args, PyObject *kw)
 }
 
 static PyObject *
-list_sizeof(PyListObject *self)
+list_sizeof(PyListObject *self, void *Py_UNUSED(ignored))
 {
     Py_ssize_t res;
 
@@ -2787,7 +2787,7 @@ listiter_next(listiterobject *it)
 }
 
 static PyObject *
-listiter_len(listiterobject *it)
+listiter_len(listiterobject *it, void *Py_UNUSED(ignored))
 {
     Py_ssize_t len;
     if (it->it_seq) {
@@ -2799,7 +2799,7 @@ listiter_len(listiterobject *it)
 }
 
 static PyObject *
-listiter_reduce(listiterobject *it)
+listiter_reduce(listiterobject *it, void *Py_UNUSED(ignored))
 {
     return listiter_reduce_general(it, 1);
 }
@@ -2935,7 +2935,7 @@ listreviter_next(listreviterobject *it)
 }
 
 static PyObject *
-listreviter_len(listreviterobject *it)
+listreviter_len(listreviterobject *it, void *Py_UNUSED(ignored))
 {
     Py_ssize_t len = it->it_index + 1;
     if (it->it_seq == NULL || PyList_GET_SIZE(it->it_seq) < len)
@@ -2944,7 +2944,7 @@ listreviter_len(listreviterobject *it)
 }
 
 static PyObject *
-listreviter_reduce(listreviterobject *it)
+listreviter_reduce(listreviterobject *it, void *Py_UNUSED(ignored))
 {
     return listiter_reduce_general(it, 0);
 }

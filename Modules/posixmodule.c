@@ -11201,7 +11201,7 @@ DirEntry_is_symlink(DirEntry *self)
 }
 
 static PyObject *
-DirEntry_py_is_symlink(DirEntry *self)
+DirEntry_py_is_symlink(DirEntry *self, void *Py_UNUSED(ignored))
 {
     int result;
 
@@ -11400,7 +11400,7 @@ DirEntry_is_file(DirEntry *self, PyObject *args, PyObject *kwargs)
 }
 
 static PyObject *
-DirEntry_inode(DirEntry *self)
+DirEntry_inode(DirEntry *self, void *Py_UNUSED(ignored))
 {
 #ifdef MS_WINDOWS
     if (!self->got_file_index) {
@@ -11438,7 +11438,7 @@ DirEntry_repr(DirEntry *self)
 }
 
 static PyObject *
-DirEntry_fspath(DirEntry *self)
+DirEntry_fspath(DirEntry *self, void *Py_UNUSED(ignored))
 {
     Py_INCREF(self->path);
     return self->path;

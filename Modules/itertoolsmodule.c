@@ -125,7 +125,7 @@ groupby_next(groupbyobject *gbo)
 }
 
 static PyObject *
-groupby_reduce(groupbyobject *lz)
+groupby_reduce(groupbyobject *lz, void *Py_UNUSED(ignored))
 {
     /* reduce as a 'new' call with an optional 'setstate' if groupby
      * has started
@@ -319,7 +319,7 @@ _grouper_next(_grouperobject *igo)
 }
 
 static PyObject *
-_grouper_reduce(_grouperobject *lz)
+_grouper_reduce(_grouperobject *lz, void *Py_UNUSED(ignored))
 {
     return Py_BuildValue("O(OO)", Py_TYPE(lz), lz->parent, lz->tgtkey);
 }
@@ -500,7 +500,7 @@ teedataobject_dealloc(teedataobject *tdo)
 }
 
 static PyObject *
-teedataobject_reduce(teedataobject *tdo)
+teedataobject_reduce(teedataobject *tdo, void *Py_UNUSED(ignored))
 {
     int i;
     /* create a temporary list of already iterated values */
@@ -645,7 +645,7 @@ tee_traverse(teeobject *to, visitproc visit, void *arg)
 }
 
 static PyObject *
-tee_copy(teeobject *to)
+tee_copy(teeobject *to, void *Py_UNUSED(ignored))
 {
     teeobject *newto;
 
@@ -722,7 +722,7 @@ tee_dealloc(teeobject *to)
 }
 
 static PyObject *
-tee_reduce(teeobject *to)
+tee_reduce(teeobject *to, void *Py_UNUSED(ignored))
 {
     return Py_BuildValue("O(())(Oi)", Py_TYPE(to), to->dataobj, to->index);
 }
@@ -953,7 +953,7 @@ cycle_next(cycleobject *lz)
 }
 
 static PyObject *
-cycle_reduce(cycleobject *lz)
+cycle_reduce(cycleobject *lz, void *Py_UNUSED(ignored))
 {
     /* Create a new cycle with the iterator tuple, then set the saved state */
     if (lz->it == NULL) {
@@ -1148,7 +1148,7 @@ dropwhile_next(dropwhileobject *lz)
 }
 
 static PyObject *
-dropwhile_reduce(dropwhileobject *lz)
+dropwhile_reduce(dropwhileobject *lz, void *Py_UNUSED(ignored))
 {
     return Py_BuildValue("O(OO)l", Py_TYPE(lz), lz->func, lz->it, lz->start);
 }
@@ -1312,7 +1312,7 @@ takewhile_next(takewhileobject *lz)
 }
 
 static PyObject *
-takewhile_reduce(takewhileobject *lz)
+takewhile_reduce(takewhileobject *lz, void *Py_UNUSED(ignored))
 {
     return Py_BuildValue("O(OO)l", Py_TYPE(lz), lz->func, lz->it, lz->stop);
 }
@@ -1538,7 +1538,7 @@ empty:
 }
 
 static PyObject *
-islice_reduce(isliceobject *lz)
+islice_reduce(isliceobject *lz, void *Py_UNUSED(ignored))
 {
     /* When unpickled, generate a new object with the same bounds,
      * then 'setstate' with the next and count
@@ -1726,7 +1726,7 @@ starmap_next(starmapobject *lz)
 }
 
 static PyObject *
-starmap_reduce(starmapobject *lz)
+starmap_reduce(starmapobject *lz, void *Py_UNUSED(ignored))
 {
     /* Just pickle the iterator */
     return Py_BuildValue("O(OO)", Py_TYPE(lz), lz->func, lz->it);
@@ -1894,7 +1894,7 @@ chain_next(chainobject *lz)
 }
 
 static PyObject *
-chain_reduce(chainobject *lz)
+chain_reduce(chainobject *lz, void *Py_UNUSED(ignored))
 {
     if (lz->source) {
         /* we can't pickle function objects (itertools.from_iterable) so
@@ -2218,7 +2218,7 @@ empty:
 }
 
 static PyObject *
-product_reduce(productobject *lz)
+product_reduce(productobject *lz, void *Py_UNUSED(ignored))
 {
     if (lz->stopped) {
         return Py_BuildValue("O(())", Py_TYPE(lz));
@@ -2545,7 +2545,7 @@ empty:
 }
 
 static PyObject *
-combinations_reduce(combinationsobject *lz)
+combinations_reduce(combinationsobject *lz, void *Py_UNUSED(ignored))
 {
     if (lz->result == NULL) {
         return Py_BuildValue("O(On)", Py_TYPE(lz), lz->pool, lz->r);
@@ -2879,7 +2879,7 @@ empty:
 }
 
 static PyObject *
-cwr_reduce(cwrobject *lz)
+cwr_reduce(cwrobject *lz, void *Py_UNUSED(ignored))
 {
     if (lz->result == NULL) {
         return Py_BuildValue("O(On)", Py_TYPE(lz), lz->pool, lz->r);
@@ -3238,7 +3238,7 @@ empty:
 }
 
 static PyObject *
-permutations_reduce(permutationsobject *po)
+permutations_reduce(permutationsobject *po, void *Py_UNUSED(ignored))
 {
     if (po->result == NULL) {
         return Py_BuildValue("O(On)", Py_TYPE(po), po->pool, po->r);
@@ -3490,7 +3490,7 @@ accumulate_next(accumulateobject *lz)
 }
 
 static PyObject *
-accumulate_reduce(accumulateobject *lz)
+accumulate_reduce(accumulateobject *lz, void *Py_UNUSED(ignored))
 {
     if (lz->total == Py_None) {
         PyObject *it;
@@ -3683,7 +3683,7 @@ compress_next(compressobject *lz)
 }
 
 static PyObject *
-compress_reduce(compressobject *lz)
+compress_reduce(compressobject *lz, void *Py_UNUSED(ignored))
 {
     return Py_BuildValue("O(OO)", Py_TYPE(lz),
         lz->data, lz->selectors);
@@ -3841,7 +3841,7 @@ filterfalse_next(filterfalseobject *lz)
 }
 
 static PyObject *
-filterfalse_reduce(filterfalseobject *lz)
+filterfalse_reduce(filterfalseobject *lz, void *Py_UNUSED(ignored))
 {
     return Py_BuildValue("O(OO)", Py_TYPE(lz), lz->func, lz->it);
 }
@@ -4088,7 +4088,7 @@ count_repr(countobject *lz)
 }
 
 static PyObject *
-count_reduce(countobject *lz)
+count_reduce(countobject *lz, void *Py_UNUSED(ignored))
 {
     if (lz->cnt == PY_SSIZE_T_MAX)
         return Py_BuildValue("O(OO)", Py_TYPE(lz), lz->long_cnt, lz->long_step);
@@ -4230,7 +4230,7 @@ repeat_repr(repeatobject *ro)
 }
 
 static PyObject *
-repeat_len(repeatobject *ro)
+repeat_len(repeatobject *ro, void *Py_UNUSED(ignored))
 {
     if (ro->cnt == -1) {
         PyErr_SetString(PyExc_TypeError, "len() of unsized object");
@@ -4242,7 +4242,7 @@ repeat_len(repeatobject *ro)
 PyDoc_STRVAR(length_hint_doc, "Private method returning an estimate of len(list(it)).");
 
 static PyObject *
-repeat_reduce(repeatobject *ro)
+repeat_reduce(repeatobject *ro, void *Py_UNUSED(ignored))
 {
     /* unpickle this so that a new repeat iterator is constructed with an
      * object, then call __setstate__ on it to set cnt
@@ -4480,7 +4480,7 @@ zip_longest_next(ziplongestobject *lz)
 }
 
 static PyObject *
-zip_longest_reduce(ziplongestobject *lz)
+zip_longest_reduce(ziplongestobject *lz, void *Py_UNUSED(ignored))
 {
 
     /* Create a new tuple with empty sequences where appropriate to pickle.

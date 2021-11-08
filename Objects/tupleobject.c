@@ -760,7 +760,7 @@ tuplesubscript(PyTupleObject* self, PyObject* item)
 }
 
 static PyObject *
-tuple_getnewargs(PyTupleObject *v)
+tuple_getnewargs(PyTupleObject *v, void *Py_UNUSED(ignored))
 {
     return Py_BuildValue("(N)", tupleslice(v, 0, Py_SIZE(v)));
 
@@ -977,7 +977,7 @@ tupleiter_next(tupleiterobject *it)
 }
 
 static PyObject *
-tupleiter_len(tupleiterobject *it)
+tupleiter_len(tupleiterobject *it, void *Py_UNUSED(ignored))
 {
     Py_ssize_t len = 0;
     if (it->it_seq)
@@ -988,7 +988,7 @@ tupleiter_len(tupleiterobject *it)
 PyDoc_STRVAR(length_hint_doc, "Private method returning an estimate of len(list(it)).");
 
 static PyObject *
-tupleiter_reduce(tupleiterobject *it)
+tupleiter_reduce(tupleiterobject *it, void *Py_UNUSED(ignored))
 {
     if (it->it_seq)
         return Py_BuildValue("N(O)n", _PyObject_GetBuiltin("iter"),

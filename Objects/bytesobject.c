@@ -2420,7 +2420,7 @@ Create a string of hexadecimal numbers from a bytes object.\n\
 Example: b'\\xb9\\x01\\xef'.hex() -> 'b901ef'.");
 
 static PyObject *
-bytes_hex(PyBytesObject *self)
+bytes_hex(PyBytesObject *self, void *Py_UNUSED(ignored))
 {
     char* argbuf = PyBytes_AS_STRING(self);
     Py_ssize_t arglen = PyBytes_GET_SIZE(self);
@@ -2428,7 +2428,7 @@ bytes_hex(PyBytesObject *self)
 }
 
 static PyObject *
-bytes_getnewargs(PyBytesObject *v)
+bytes_getnewargs(PyBytesObject *v, void *Py_UNUSED(ignored))
 {
     return Py_BuildValue("(y#)", v->ob_sval, Py_SIZE(v));
 }
@@ -3033,7 +3033,7 @@ striter_next(striterobject *it)
 }
 
 static PyObject *
-striter_len(striterobject *it)
+striter_len(striterobject *it, void *Py_UNUSED(ignored))
 {
     Py_ssize_t len = 0;
     if (it->it_seq)
@@ -3045,7 +3045,7 @@ PyDoc_STRVAR(length_hint_doc,
              "Private method returning an estimate of len(list(it)).");
 
 static PyObject *
-striter_reduce(striterobject *it)
+striter_reduce(striterobject *it, void *Py_UNUSED(ignored))
 {
     if (it->it_seq != NULL) {
         return Py_BuildValue("N(O)n", _PyObject_GetBuiltin("iter"),

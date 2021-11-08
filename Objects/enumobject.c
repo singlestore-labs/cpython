@@ -159,7 +159,7 @@ enum_next(enumobject *en)
 }
 
 static PyObject *
-enum_reduce(enumobject *en)
+enum_reduce(enumobject *en, void *Py_UNUSED(ignored))
 {
     if (en->en_longindex != NULL)
         return Py_BuildValue("O(OO)", Py_TYPE(en), en->en_sit, en->en_longindex);
@@ -328,7 +328,7 @@ PyDoc_STRVAR(reversed_doc,
 "Return a reverse iterator");
 
 static PyObject *
-reversed_len(reversedobject *ro)
+reversed_len(reversedobject *ro, void *Py_UNUSED(ignored))
 {
     Py_ssize_t position, seqsize;
 
@@ -344,7 +344,7 @@ reversed_len(reversedobject *ro)
 PyDoc_STRVAR(length_hint_doc, "Private method returning an estimate of len(list(it)).");
 
 static PyObject *
-reversed_reduce(reversedobject *ro)
+reversed_reduce(reversedobject *ro, void *Py_UNUSED(ignored))
 {
     if (ro->seq)
         return Py_BuildValue("O(O)n", Py_TYPE(ro), ro->seq, ro->index);

@@ -1472,7 +1472,7 @@ NotImplemented_repr(PyObject *op)
 }
 
 static PyObject *
-NotImplemented_reduce(PyObject *op)
+NotImplemented_reduce(PyObject *op, void *Py_UNUSED(ignored))
 {
     return PyUnicode_FromString("NotImplemented");
 }

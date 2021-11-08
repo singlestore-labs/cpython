@@ -519,7 +519,7 @@ faulthandler_disable(void)
 }
 
 static PyObject*
-faulthandler_disable_py(PyObject *self)
+faulthandler_disable_py(PyObject *self, void *Py_UNUSED(ignored))
 {
     if (!fatal_error.enabled) {
         Py_INCREF(Py_False);
@@ -531,7 +531,7 @@ faulthandler_disable_py(PyObject *self)
 }
 
 static PyObject*
-faulthandler_is_enabled(PyObject *self)
+faulthandler_is_enabled(PyObject *self, void *Py_UNUSED(ignored))
 {
     return PyBool_FromLong(fatal_error.enabled);
 }

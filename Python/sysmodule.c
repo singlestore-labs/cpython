@@ -281,7 +281,7 @@ exit status will be one (i.e., failure)."
 
 
 static PyObject *
-sys_getdefaultencoding(PyObject *self)
+sys_getdefaultencoding(PyObject *self, void *Py_UNUSED(ignored))
 {
     return PyUnicode_FromString(PyUnicode_GetDefaultEncoding());
 }
@@ -294,7 +294,7 @@ implementation."
 );
 
 static PyObject *
-sys_getfilesystemencoding(PyObject *self)
+sys_getfilesystemencoding(PyObject *self, void *Py_UNUSED(ignored))
 {
     if (Py_FileSystemDefaultEncoding)
         return PyUnicode_FromString(Py_FileSystemDefaultEncoding);
@@ -311,7 +311,7 @@ operating system filenames."
 );
 
 static PyObject *
-sys_getfilesystemencodeerrors(PyObject *self)
+sys_getfilesystemencodeerrors(PyObject *self, void *Py_UNUSED(ignored))
 {
     if (Py_FileSystemDefaultEncodeErrors)
         return PyUnicode_FromString(Py_FileSystemDefaultEncodeErrors);
@@ -873,7 +873,7 @@ dependent."
 );
 
 static PyObject *
-sys_getrecursionlimit(PyObject *self)
+sys_getrecursionlimit(PyObject *self, void *Py_UNUSED(ignored))
 {
     return PyLong_FromLong(Py_GetRecursionLimit());
 }
@@ -1176,7 +1176,7 @@ reference as an argument to getrefcount()."
 );
 
 static PyObject *
-sys_getallocatedblocks(PyObject *self)
+sys_getallocatedblocks(PyObject *self, void *Py_UNUSED(ignored))
 {
     return PyLong_FromSsize_t(_Py_GetAllocatedBlocks());
 }

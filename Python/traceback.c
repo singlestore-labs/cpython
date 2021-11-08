@@ -27,7 +27,7 @@ _Py_IDENTIFIER(open);
 _Py_IDENTIFIER(path);
 
 static PyObject *
-tb_dir(PyTracebackObject *self)
+tb_dir(PyTracebackObject *self, void *Py_UNUSED(ignored))
 {
     return Py_BuildValue("[ssss]", "tb_frame", "tb_next",
                                    "tb_lasti", "tb_lineno");

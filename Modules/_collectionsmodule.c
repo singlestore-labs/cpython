@@ -512,7 +512,7 @@ deque_inplace_concat(dequeobject *deque, PyObject *other)
 }
 
 static PyObject *
-deque_copy(PyObject *deque)
+deque_copy(PyObject *deque, void *Py_UNUSED(ignored))
 {
     dequeobject *old_deque = (dequeobject *)deque;
     if (Py_TYPE(deque) == &deque_type) {
@@ -658,7 +658,7 @@ deque_clear(dequeobject *deque)
 }
 
 static PyObject *
-deque_clearmethod(dequeobject *deque)
+deque_clearmethod(dequeobject *deque, void *Py_UNUSED(ignored))
 {
     deque_clear(deque);
     Py_RETURN_NONE;
@@ -1330,7 +1330,7 @@ deque_traverse(dequeobject *deque, visitproc visit, void *arg)
 }
 
 static PyObject *
-deque_reduce(dequeobject *deque)
+deque_reduce(dequeobject *deque, void *Py_UNUSED(ignored))
 {
     PyObject *dict, *it;
     _Py_IDENTIFIER(__dict__);
@@ -1572,7 +1572,7 @@ static PyNumberMethods deque_as_number = {
  };
 
 static PyObject *deque_iter(dequeobject *deque);
-static PyObject *deque_reviter(dequeobject *deque);
+static PyObject *deque_reviter(dequeobject *deque, void *Py_UNUSED(ignored));
 PyDoc_STRVAR(reversed_doc,
     "D.__reversed__() -- return a reverse iterator over the deque");
 
@@ -1768,7 +1768,7 @@ dequeiter_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 }
 
 static PyObject *
-dequeiter_len(dequeiterobject *it)
+dequeiter_len(dequeiterobject *it, void *Py_UNUSED(ignored))
 {
     return PyLong_FromSsize_t(it->counter);
 }
@@ -1776,7 +1776,7 @@ dequeiter_len(dequeiterobject *it)
 PyDoc_STRVAR(length_hint_doc, "Private method returning an estimate of len(list(it)).");
 
 static PyObject *
-dequeiter_reduce(dequeiterobject *it)
+dequeiter_reduce(dequeiterobject *it, void *Py_UNUSED(ignored))
 {
     return Py_BuildValue("O(On)", Py_TYPE(it), it->deque, Py_SIZE(it->deque) - it->counter);
 }
@@ -1835,7 +1835,7 @@ static PyTypeObject dequeiter_type = {
 static PyTypeObject dequereviter_type;
 
 static PyObject *
-deque_reviter(dequeobject *deque)
+deque_reviter(dequeobject *deque, void *Py_UNUSED(ignored))
 {
     dequeiterobject *it;
 
@@ -1995,7 +1995,7 @@ defdict_missing(defdictobject *dd, PyObject *key)
 PyDoc_STRVAR(defdict_copy_doc, "D.copy() -> a shallow copy of D.");
 
 static PyObject *
-defdict_copy(defdictobject *dd)
+defdict_copy(defdictobject *dd, void *Py_UNUSED(ignored))
 {
     /* This calls the object's class.  That only works for subclasses
        whose class constructor has the same signature.  Subclasses that
@@ -2009,7 +2009,7 @@ defdict_copy(defdictobject *dd)
 }
 
 static PyObject *
-defdict_reduce(defdictobject *dd)
+defdict_reduce(defdictobject *dd, void *Py_UNUSED(ignored))
 {
     /* __reduce__ must return a 5-tuple as follows:
 

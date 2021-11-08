@@ -126,7 +126,7 @@ BaseException_repr(PyBaseExceptionObject *self)
 
 /* Pickling support */
 static PyObject *
-BaseException_reduce(PyBaseExceptionObject *self)
+BaseException_reduce(PyBaseExceptionObject *self, void *Py_UNUSED(ignored))
 {
     if (self->args && self->dict)
         return PyTuple_Pack(3, Py_TYPE(self), self->args, self->dict);
@@ -1079,7 +1079,7 @@ OSError_str(PyOSErrorObject *self)
 }
 
 static PyObject *
-OSError_reduce(PyOSErrorObject *self)
+OSError_reduce(PyOSErrorObject *self, void *Py_UNUSED(ignored))
 {
     PyObject *args = self->args;
     PyObject *res = NULL, *tmp;

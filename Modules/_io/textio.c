@@ -73,7 +73,7 @@ PyDoc_STRVAR(textiobase_detach_doc,
     );
 
 static PyObject *
-textiobase_detach(PyObject *self)
+textiobase_detach(PyObject *self, void *Py_UNUSED(ignored))
 {
     return _unsupported("detach");
 }

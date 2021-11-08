@@ -175,7 +175,7 @@ namespace_richcompare(PyObject *self, PyObject *other, int op)
 PyDoc_STRVAR(namespace_reduce__doc__, "Return state information for pickling");
 
 static PyObject *
-namespace_reduce(_PyNamespaceObject *ns)
+namespace_reduce(_PyNamespaceObject *ns, void *Py_UNUSED(ignored))
 {
     PyObject *result, *args = PyTuple_New(0);
 

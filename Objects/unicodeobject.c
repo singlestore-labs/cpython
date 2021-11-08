@@ -10755,7 +10755,7 @@ Return a titlecased version of S, i.e. words start with title case\n\
 characters, all remaining cased characters have lower case.");
 
 static PyObject*
-unicode_title(PyObject *self)
+unicode_title(PyObject *self, void *Py_UNUSED(ignored))
 {
     if (PyUnicode_READY(self) == -1)
         return NULL;
@@ -10769,7 +10769,7 @@ Return a capitalized version of S, i.e. make the first character\n\
 have upper case and the rest lower case.");
 
 static PyObject*
-unicode_capitalize(PyObject *self)
+unicode_capitalize(PyObject *self, void *Py_UNUSED(ignored))
 {
     if (PyUnicode_READY(self) == -1)
         return NULL;
@@ -10784,7 +10784,7 @@ PyDoc_STRVAR(casefold__doc__,
 Return a version of S suitable for caseless comparisons.");
 
 static PyObject *
-unicode_casefold(PyObject *self)
+unicode_casefold(PyObject *self, void *Py_UNUSED(ignored))
 {
     if (PyUnicode_READY(self) == -1)
         return NULL;
@@ -11738,7 +11738,7 @@ Return True if all cased characters in S are lowercase and there is\n\
 at least one cased character in S, False otherwise.");
 
 static PyObject*
-unicode_islower(PyObject *self)
+unicode_islower(PyObject *self, void *Py_UNUSED(ignored))
 {
     Py_ssize_t i, length;
     int kind;
@@ -11779,7 +11779,7 @@ Return True if all cased characters in S are uppercase and there is\n\
 at least one cased character in S, False otherwise.");
 
 static PyObject*
-unicode_isupper(PyObject *self)
+unicode_isupper(PyObject *self, void *Py_UNUSED(ignored))
 {
     Py_ssize_t i, length;
     int kind;
@@ -11822,7 +11822,7 @@ follow uncased characters and lowercase characters only cased ones.\n\
 Return False otherwise.");
 
 static PyObject*
-unicode_istitle(PyObject *self)
+unicode_istitle(PyObject *self, void *Py_UNUSED(ignored))
 {
     Py_ssize_t i, length;
     int kind;
@@ -11876,7 +11876,7 @@ Return True if all characters in S are whitespace\n\
 and there is at least one character in S, False otherwise.");
 
 static PyObject*
-unicode_isspace(PyObject *self)
+unicode_isspace(PyObject *self, void *Py_UNUSED(ignored))
 {
     Py_ssize_t i, length;
     int kind;
@@ -11912,7 +11912,7 @@ Return True if all characters in S are alphabetic\n\
 and there is at least one character in S, False otherwise.");
 
 static PyObject*
-unicode_isalpha(PyObject *self)
+unicode_isalpha(PyObject *self, void *Py_UNUSED(ignored))
 {
     Py_ssize_t i, length;
     int kind;
@@ -11947,7 +11947,7 @@ Return True if all characters in S are alphanumeric\n\
 and there is at least one character in S, False otherwise.");
 
 static PyObject*
-unicode_isalnum(PyObject *self)
+unicode_isalnum(PyObject *self, void *Py_UNUSED(ignored))
 {
     int kind;
     void *data;
@@ -11985,7 +11985,7 @@ Return True if there are only decimal characters in S,\n\
 False otherwise.");
 
 static PyObject*
-unicode_isdecimal(PyObject *self)
+unicode_isdecimal(PyObject *self, void *Py_UNUSED(ignored))
 {
     Py_ssize_t i, length;
     int kind;
@@ -12020,7 +12020,7 @@ Return True if all characters in S are digits\n\
 and there is at least one character in S, False otherwise.");
 
 static PyObject*
-unicode_isdigit(PyObject *self)
+unicode_isdigit(PyObject *self, void *Py_UNUSED(ignored))
 {
     Py_ssize_t i, length;
     int kind;
@@ -12056,7 +12056,7 @@ Return True if there are only numeric characters in S,\n\
 False otherwise.");
 
 static PyObject*
-unicode_isnumeric(PyObject *self)
+unicode_isnumeric(PyObject *self, void *Py_UNUSED(ignored))
 {
     Py_ssize_t i, length;
     int kind;
@@ -12131,7 +12131,7 @@ Use keyword.iskeyword() to test for reserved identifiers\n\
 such as \"def\" and \"class\".\n");
 
 static PyObject*
-unicode_isidentifier(PyObject *self)
+unicode_isidentifier(PyObject *self, void *Py_UNUSED(ignored))
 {
     return PyBool_FromLong(PyUnicode_IsIdentifier(self));
 }
@@ -12143,7 +12143,7 @@ Return True if all characters in S are considered\n\
 printable in repr() or S is empty, False otherwise.");
 
 static PyObject*
-unicode_isprintable(PyObject *self)
+unicode_isprintable(PyObject *self, void *Py_UNUSED(ignored))
 {
     Py_ssize_t i, length;
     int kind;
@@ -12218,7 +12218,7 @@ PyDoc_STRVAR(lower__doc__,
 Return a copy of the string S converted to lowercase.");
 
 static PyObject*
-unicode_lower(PyObject *self)
+unicode_lower(PyObject *self, void *Py_UNUSED(ignored))
 {
     if (PyUnicode_READY(self) == -1)
         return NULL;
@@ -13068,7 +13068,7 @@ Return a copy of S with uppercase characters converted to lowercase\n\
 and vice versa.");
 
 static PyObject*
-unicode_swapcase(PyObject *self)
+unicode_swapcase(PyObject *self, void *Py_UNUSED(ignored))
 {
     if (PyUnicode_READY(self) == -1)
         return NULL;
@@ -13227,7 +13227,7 @@ PyDoc_STRVAR(upper__doc__,
 Return a copy of S converted to uppercase.");
 
 static PyObject*
-unicode_upper(PyObject *self)
+unicode_upper(PyObject *self, void *Py_UNUSED(ignored))
 {
     if (PyUnicode_READY(self) == -1)
         return NULL;
@@ -13770,7 +13770,7 @@ PyDoc_STRVAR(p_format__doc__,
 Return a formatted version of S as described by format_spec.");
 
 static PyObject *
-unicode__sizeof__(PyObject *v)
+unicode__sizeof__(PyObject *v, void *Py_UNUSED(ignored))
 {
     Py_ssize_t size;
 
@@ -13803,7 +13803,7 @@ PyDoc_STRVAR(sizeof__doc__,
              "S.__sizeof__() -> size of S in memory, in bytes");
 
 static PyObject *
-unicode_getnewargs(PyObject *v)
+unicode_getnewargs(PyObject *v, void *Py_UNUSED(ignored))
 {
     PyObject *copy = _PyUnicode_Copy(v);
     if (!copy)
@@ -15345,7 +15345,7 @@ unicodeiter_next(unicodeiterobject *it)
 }
 
 static PyObject *
-unicodeiter_len(unicodeiterobject *it)
+unicodeiter_len(unicodeiterobject *it, void *Py_UNUSED(ignored))
 {
     Py_ssize_t len = 0;
     if (it->it_seq)
@@ -15356,7 +15356,7 @@ unicodeiter_len(unicodeiterobject *it)
 PyDoc_STRVAR(length_hint_doc, "Private method returning an estimate of len(list(it)).");
 
 static PyObject *
-unicodeiter_reduce(unicodeiterobject *it)
+unicodeiter_reduce(unicodeiterobject *it, void *Py_UNUSED(ignored))
 {
     if (it->it_seq != NULL) {
         return Py_BuildValue("N(O)n", _PyObject_GetBuiltin("iter"),

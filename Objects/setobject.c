@@ -698,7 +698,7 @@ set_merge(PySetObject *so, PyObject *otherset)
 }
 
 static PyObject *
-set_pop(PySetObject *so)
+set_pop(PySetObject *so, void *Py_UNUSED(ignored))
 {
     /* Make sure the search finger is in bounds */
     Py_ssize_t i = so->finger & so->mask;
@@ -825,7 +825,7 @@ setiter_traverse(setiterobject *si, visitproc visit, void *arg)
 }
 
 static PyObject *
-setiter_len(setiterobject *si)
+setiter_len(setiterobject *si, void *Py_UNUSED(ignored))
 {
     Py_ssize_t len = 0;
     if (si->si_set != NULL && si->si_used == si->si_set->used)
@@ -838,7 +838,7 @@ PyDoc_STRVAR(length_hint_doc, "Private method returning an estimate of len(list(
 static PyObject *setiter_iternext(setiterobject *si);
 
 static PyObject *
-setiter_reduce(setiterobject *si)
+setiter_reduce(setiterobject *si, void *Py_UNUSED(ignored))
 {
     PyObject *list;
     setiterobject tmp;
@@ -1168,13 +1168,13 @@ set_swap_bodies(PySetObject *a, PySetObject *b)
 }
 
 static PyObject *
-set_copy(PySetObject *so)
+set_copy(PySetObject *so, void *Py_UNUSED(ignored))
 {
     return make_new_set_basetype(Py_TYPE(so), (PyObject *)so);
 }
 
 static PyObject *
-frozenset_copy(PySetObject *so)
+frozenset_copy(PySetObject *so, void *Py_UNUSED(ignored))
 {
     if (PyFrozenSet_CheckExact(so)) {
         Py_INCREF(so);
@@ -1186,7 +1186,7 @@ frozenset_copy(PySetObject *so)
 PyDoc_STRVAR(copy_doc, "Return a shallow copy of a set.");
 
 static PyObject *
-set_clear(PySetObject *so)
+set_clear(PySetObject *so, void *Py_UNUSED(ignored))
 {
     set_clear_internal(so);
     Py_RETURN_NONE;
@@ -1963,7 +1963,7 @@ PyDoc_STRVAR(discard_doc,
 If the element is not a member, do nothing.");
 
 static PyObject *
-set_reduce(PySetObject *so)
+set_reduce(PySetObject *so, void *Py_UNUSED(ignored))
 {
     PyObject *keys=NULL, *args=NULL, *result=NULL, *dict=NULL;
     _Py_IDENTIFIER(__dict__);
@@ -1989,7 +1989,7 @@ done:
 }
 
 static PyObject *
-set_sizeof(PySetObject *so)
+set_sizeof(PySetObject *so, void *Py_UNUSED(ignored))
 {
     Py_ssize_t res;
 

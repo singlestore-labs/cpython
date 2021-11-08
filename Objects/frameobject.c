@@ -516,7 +516,7 @@ frame_tp_clear(PyFrameObject *f)
 }
 
 static PyObject *
-frame_clear(PyFrameObject *f)
+frame_clear(PyFrameObject *f, void *Py_UNUSED(ignored))
 {
     if (f->f_executing) {
         PyErr_SetString(PyExc_RuntimeError,
@@ -535,7 +535,7 @@ PyDoc_STRVAR(clear__doc__,
 "F.clear(): clear most references held by the frame");
 
 static PyObject *
-frame_sizeof(PyFrameObject *f)
+frame_sizeof(PyFrameObject *f, void *Py_UNUSED(ignored))
 {
     Py_ssize_t res, extras, ncells, nfrees;
 

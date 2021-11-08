@@ -669,7 +669,7 @@ static PyMappingMethods range_as_mapping = {
 };
 
 static PyObject * range_iter(PyObject *seq);
-static PyObject * range_reverse(PyObject *seq);
+static PyObject * range_reverse(PyObject *seq, void *Py_UNUSED(ignored));
 
 PyDoc_STRVAR(reverse_doc,
 "Return a reverse iterator.");
@@ -764,7 +764,7 @@ rangeiter_next(rangeiterobject *r)
 }
 
 static PyObject *
-rangeiter_len(rangeiterobject *r)
+rangeiter_len(rangeiterobject *r, void *Py_UNUSED(ignored))
 {
     return PyLong_FromLong(r->len - r->index);
 }
@@ -773,7 +773,7 @@ PyDoc_STRVAR(length_hint_doc,
              "Private method returning an estimate of len(list(it)).");
 
 static PyObject *
-rangeiter_reduce(rangeiterobject *r)
+rangeiter_reduce(rangeiterobject *r, void *Py_UNUSED(ignored))
 {
     PyObject *start=NULL, *stop=NULL, *step=NULL;
     PyObject *range;
@@ -970,7 +970,7 @@ longrangeiter_len(longrangeiterobject *r, PyObject *no_args)
 }
 
 static PyObject *
-longrangeiter_reduce(longrangeiterobject *r)
+longrangeiter_reduce(longrangeiterobject *r, void *Py_UNUSED(ignored))
 {
     PyObject *product, *stop=NULL;
     PyObject *range;
@@ -1173,7 +1173,7 @@ create_failure:
 }
 
 static PyObject *
-range_reverse(PyObject *seq)
+range_reverse(PyObject *seq, void *Py_UNUSED(ignored))
 {
     rangeobject *range = (rangeobject*) seq;
     longrangeiterobject *it;

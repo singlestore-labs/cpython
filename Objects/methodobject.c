@@ -48,7 +48,7 @@ PyCFunction_NewEx(PyMethodDef *ml, PyObject *self, PyObject *module)
 }
 
 PyCFunction
-PyCFunction_GetFunction(PyObject *op)
+PyCFunction_GetFunction(PyObject *op, void *Py_UNUSED(ignored))
 {
     if (!PyCFunction_Check(op)) {
         PyErr_BadInternalCall();
@@ -319,7 +319,7 @@ meth_dealloc(PyCFunctionObject *m)
 }
 
 static PyObject *
-meth_reduce(PyCFunctionObject *m)
+meth_reduce(PyCFunctionObject *m, void *Py_UNUSED(ignored))
 {
     PyObject *builtins;
     PyObject *getattr;

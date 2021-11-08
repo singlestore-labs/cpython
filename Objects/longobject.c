@@ -2524,7 +2524,7 @@ PyLong_FromUnicodeObject(PyObject *u, int base)
 /* forward */
 static PyLongObject *x_divrem
     (PyLongObject *, PyLongObject *, PyLongObject **);
-static PyObject *long_long(PyObject *v);
+static PyObject *long_long(PyObject *v, void *Py_UNUSED(ignored));
 
 /* Int division with remainder, top-level routine */
 
@@ -4563,7 +4563,7 @@ long_or(PyObject *a, PyObject *b)
 }
 
 static PyObject *
-long_long(PyObject *v)
+long_long(PyObject *v, void *Py_UNUSED(ignored))
 {
     if (PyLong_CheckExact(v))
         Py_INCREF(v);
@@ -4880,7 +4880,7 @@ long_subtype_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 }
 
 static PyObject *
-long_getnewargs(PyLongObject *v)
+long_getnewargs(PyLongObject *v, void *Py_UNUSED(ignored))
 {
     return Py_BuildValue("(N)", _PyLong_Copy(v));
 }
@@ -5083,7 +5083,7 @@ long_round(PyObject *self, PyObject *args)
 }
 
 static PyObject *
-long_sizeof(PyLongObject *v)
+long_sizeof(PyLongObject *v, void *Py_UNUSED(ignored))
 {
     Py_ssize_t res;
 
@@ -5092,7 +5092,7 @@ long_sizeof(PyLongObject *v)
 }
 
 static PyObject *
-long_bit_length(PyLongObject *v)
+long_bit_length(PyLongObject *v, void *Py_UNUSED(ignored))
 {
     PyLongObject *result, *x, *y;
     Py_ssize_t ndigits, msd_bits = 0;

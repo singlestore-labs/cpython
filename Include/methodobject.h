@@ -22,7 +22,7 @@ typedef PyObject *(*PyCFunctionWithKeywords)(PyObject *, PyObject *,
                                              PyObject *);
 typedef PyObject *(*PyNoArgsFunction)(PyObject *);
 
-PyAPI_FUNC(PyCFunction) PyCFunction_GetFunction(PyObject *);
+PyAPI_FUNC(PyCFunction) PyCFunction_GetFunction(PyObject *, void *Py_UNUSED(ignored));
 PyAPI_FUNC(PyObject *) PyCFunction_GetSelf(PyObject *);
 PyAPI_FUNC(int) PyCFunction_GetFlags(PyObject *);
 
