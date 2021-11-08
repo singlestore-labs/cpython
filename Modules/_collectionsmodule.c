@@ -562,7 +562,7 @@ deque_concat(dequeobject *deque, PyObject *other)
         return NULL;
     }
 
-    new_deque = deque_copy((PyObject *)deque);
+    new_deque = deque_copy((PyObject *)deque, NULL);
     if (new_deque == NULL)
         return NULL;
     result = deque_extend((dequeobject *)new_deque, other);
@@ -749,7 +749,7 @@ deque_repeat(dequeobject *deque, Py_ssize_t n)
     dequeobject *new_deque;
     PyObject *rv;
 
-    new_deque = (dequeobject *)deque_copy((PyObject *) deque);
+    new_deque = (dequeobject *)deque_copy((PyObject *) deque, NULL);
     if (new_deque == NULL)
         return NULL;
     rv = deque_inplace_repeat(new_deque, n);
@@ -1890,7 +1890,7 @@ dequereviter_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
         return NULL;
     assert(type == &dequereviter_type);
 
-    it = (dequeiterobject*)deque_reviter((dequeobject *)deque);
+    it = (dequeiterobject*)deque_reviter((dequeobject *)deque, NULL);
     if (!it)
         return NULL;
     /* consume items from the queue */

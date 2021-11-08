@@ -1352,7 +1352,7 @@ Return True if Python is exiting.");
 
 static PyMethodDef sys_methods[] = {
     /* Might as well keep this in alphabetic order */
-    {"callstats", (PyCFunction)PyEval_GetCallStats, METH_NOARGS,
+    {"callstats", (PyCFunction)PyEval_GetCallStatsWrapper, METH_NOARGS,
      callstats_doc},
     {"_clear_type_cache",       sys_clear_type_cache,     METH_NOARGS,
      sys_clear_type_cache__doc__},

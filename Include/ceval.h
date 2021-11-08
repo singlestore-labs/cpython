@@ -127,6 +127,8 @@ PyAPI_FUNC(PyObject *) PyEval_EvalFrameEx(struct _frame *f, int exc);
 PyAPI_FUNC(PyObject *) _PyEval_EvalFrameDefault(struct _frame *f, int exc);
 #endif
 
+PyObject* PyEval_GetCallStatsWrapper(PyObject *self, void *Py_UNUSED(ignored));
+
 /* Interface for threads.
 
    A module that plans to do a blocking system call (or something else
