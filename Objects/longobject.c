@@ -2524,7 +2524,7 @@ PyLong_FromUnicodeObject(PyObject *u, int base)
 /* forward */
 static PyLongObject *x_divrem
     (PyLongObject *, PyLongObject *, PyLongObject **);
-static PyObject *long_long(PyObject *v, void *Py_UNUSED(ignored));
+static PyObject *long_long(PyObject *v);
 
 /* Int division with remainder, top-level routine */
 
@@ -4563,7 +4563,7 @@ long_or(PyObject *a, PyObject *b)
 }
 
 static PyObject *
-long_long(PyObject *v, void *Py_UNUSED(ignored))
+long_long(PyObject *v)
 {
     if (PyLong_CheckExact(v))
         Py_INCREF(v);
@@ -5325,7 +5325,7 @@ The signed keyword-only argument indicates whether two's complement is\n\
 used to represent the integer.");
 
 static PyMethodDef long_methods[] = {
-    {"conjugate",       (PyCFunction)long_long, METH_NOARGS,
+    {"conjugate",       (PyCFunction)long_long_getter, METH_NOARGS,
      "Returns self, the complex conjugate of any int."},
     {"bit_length",      (PyCFunction)long_bit_length, METH_NOARGS,
      long_bit_length_doc},

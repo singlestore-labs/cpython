@@ -2678,9 +2678,9 @@ static PyObject *list_iter(PyObject *);
 static void listiter_dealloc(listiterobject *);
 static int listiter_traverse(listiterobject *, visitproc, void *);
 static PyObject *listiter_next(listiterobject *);
-static PyObject *listiter_len(listiterobject *);
+static PyObject *listiter_len(listiterobject *, void *);
 static PyObject *listiter_reduce_general(void *_it, int forward);
-static PyObject *listiter_reduce(listiterobject *);
+static PyObject *listiter_reduce(listiterobject *, void *);
 static PyObject *listiter_setstate(listiterobject *, PyObject *state);
 
 PyDoc_STRVAR(length_hint_doc, "Private method returning an estimate of len(list(it)).");
@@ -2832,8 +2832,8 @@ static PyObject *list_reversed(PyListObject *, PyObject *);
 static void listreviter_dealloc(listreviterobject *);
 static int listreviter_traverse(listreviterobject *, visitproc, void *);
 static PyObject *listreviter_next(listreviterobject *);
-static PyObject *listreviter_len(listreviterobject *);
-static PyObject *listreviter_reduce(listreviterobject *);
+static PyObject *listreviter_len(listreviterobject *, void *);
+static PyObject *listreviter_reduce(listreviterobject *, void *);
 static PyObject *listreviter_setstate(listreviterobject *, PyObject *);
 
 static PyMethodDef listreviter_methods[] = {
