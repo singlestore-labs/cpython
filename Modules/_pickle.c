@@ -4404,7 +4404,7 @@ Pickler_get_memo(PicklerObject *self, void *Py_UNUSED(ignored))
 }
 
 static int
-Pickler_set_memo(PicklerObject *self, PyObject *obj)
+Pickler_set_memo(PicklerObject *self, PyObject *obj, void *Py_UNUSED(ignored))
 {
     PyMemoTable *new_memo = NULL;
 
@@ -4476,7 +4476,7 @@ Pickler_get_persid(PicklerObject *self, void *Py_UNUSED(ignored))
 }
 
 static int
-Pickler_set_persid(PicklerObject *self, PyObject *value)
+Pickler_set_persid(PicklerObject *self, PyObject *value, void *Py_UNUSED(ignored))
 {
     if (value == NULL) {
         PyErr_SetString(PyExc_TypeError,
@@ -6842,7 +6842,7 @@ Unpickler_get_memo(UnpicklerObject *self, void *Py_UNUSED(ignored))
 }
 
 static int
-Unpickler_set_memo(UnpicklerObject *self, PyObject *obj)
+Unpickler_set_memo(UnpicklerObject *self, PyObject *obj, void *Py_UNUSED(ignored))
 {
     PyObject **new_memo;
     Py_ssize_t new_memo_size = 0;
@@ -6931,7 +6931,7 @@ Unpickler_get_persload(UnpicklerObject *self, void *Py_UNUSED(ignored))
 }
 
 static int
-Unpickler_set_persload(UnpicklerObject *self, PyObject *value)
+Unpickler_set_persload(UnpicklerObject *self, PyObject *value, void *Py_UNUSED(ignored))
 {
     if (value == NULL) {
         PyErr_SetString(PyExc_TypeError,

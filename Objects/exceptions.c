@@ -192,7 +192,7 @@ BaseException_get_args(PyBaseExceptionObject *self, void *Py_UNUSED(ignored))
 }
 
 static int
-BaseException_set_args(PyBaseExceptionObject *self, PyObject *val)
+BaseException_set_args(PyBaseExceptionObject *self, PyObject *val, void *Py_UNUSED(ignored))
 {
     PyObject *seq;
     if (val == NULL) {
@@ -218,7 +218,7 @@ BaseException_get_tb(PyBaseExceptionObject *self, void *Py_UNUSED(ignored))
 }
 
 static int
-BaseException_set_tb(PyBaseExceptionObject *self, PyObject *tb)
+BaseException_set_tb(PyBaseExceptionObject *self, PyObject *tb, void *Py_UNUSED(ignored))
 {
     if (tb == NULL) {
         PyErr_SetString(PyExc_TypeError, "__traceback__ may not be deleted");

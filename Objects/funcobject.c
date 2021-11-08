@@ -247,7 +247,7 @@ func_get_code(PyFunctionObject *op, void *Py_UNUSED(ignored))
 }
 
 static int
-func_set_code(PyFunctionObject *op, PyObject *value)
+func_set_code(PyFunctionObject *op, PyObject *value, void *Py_UNUSED(ignored))
 {
     Py_ssize_t nfree, nclosure;
 
@@ -282,7 +282,7 @@ func_get_name(PyFunctionObject *op, void *Py_UNUSED(ignored))
 }
 
 static int
-func_set_name(PyFunctionObject *op, PyObject *value)
+func_set_name(PyFunctionObject *op, PyObject *value, void *Py_UNUSED(ignored))
 {
     /* Not legal to del f.func_name or to set it to anything
      * other than a string object. */
@@ -304,7 +304,7 @@ func_get_qualname(PyFunctionObject *op, void *Py_UNUSED(ignored))
 }
 
 static int
-func_set_qualname(PyFunctionObject *op, PyObject *value)
+func_set_qualname(PyFunctionObject *op, PyObject *value, void *Py_UNUSED(ignored))
 {
     /* Not legal to del f.__qualname__ or to set it to anything
      * other than a string object. */
@@ -330,7 +330,7 @@ func_get_defaults(PyFunctionObject *op, void *Py_UNUSED(ignored))
 }
 
 static int
-func_set_defaults(PyFunctionObject *op, PyObject *value)
+func_set_defaults(PyFunctionObject *op, PyObject *value, void *Py_UNUSED(ignored))
 {
     /* Legal to del f.func_defaults.
      * Can only set func_defaults to NULL or a tuple. */
@@ -358,7 +358,7 @@ func_get_kwdefaults(PyFunctionObject *op, void *Py_UNUSED(ignored))
 }
 
 static int
-func_set_kwdefaults(PyFunctionObject *op, PyObject *value)
+func_set_kwdefaults(PyFunctionObject *op, PyObject *value, void *Py_UNUSED(ignored))
 {
     if (value == Py_None)
         value = NULL;
@@ -387,7 +387,7 @@ func_get_annotations(PyFunctionObject *op, void *Py_UNUSED(ignored))
 }
 
 static int
-func_set_annotations(PyFunctionObject *op, PyObject *value)
+func_set_annotations(PyFunctionObject *op, PyObject *value, void *Py_UNUSED(ignored))
 {
     if (value == Py_None)
         value = NULL;
