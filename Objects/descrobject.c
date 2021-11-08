@@ -1149,7 +1149,7 @@ wrapper_text_signature(wrapperobject *wp, void *closure)
 static PyObject *
 wrapper_qualname(wrapperobject *wp, void *Py_UNUSED(ignored))
 {
-    return descr_get_qualname((PyDescrObject *)wp->descr);
+    return descr_get_qualname((PyDescrObject *)wp->descr, NULL);
 }
 
 static PyGetSetDef wrapper_getsets[] = {

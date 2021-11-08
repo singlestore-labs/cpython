@@ -312,7 +312,7 @@ PyException_GetTraceback(PyObject *self) {
 
 int
 PyException_SetTraceback(PyObject *self, PyObject *tb) {
-    return BaseException_set_tb((PyBaseExceptionObject *)self, tb);
+    return BaseException_set_tb((PyBaseExceptionObject *)self, tb, NULL);
 }
 
 PyObject *
