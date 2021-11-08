@@ -1169,13 +1169,13 @@ ConnectPipe(OverlappedObject *self, PyObject *args)
 }
 
 static PyObject*
-Overlapped_getaddress(OverlappedObject *self)
+Overlapped_getaddress(OverlappedObject *self, void *Py_UNUSED(ignored))
 {
     return PyLong_FromVoidPtr(&self->overlapped);
 }
 
 static PyObject*
-Overlapped_getpending(OverlappedObject *self)
+Overlapped_getpending(OverlappedObject *self, void *Py_UNUSED(ignored))
 {
     return PyBool_FromLong(!HasOverlappedIoCompleted(&self->overlapped) &&
                            self->type != TYPE_NOT_STARTED);

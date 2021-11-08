@@ -2537,7 +2537,7 @@ Setting a timeout of zero is the same as setblocking(0).");
 /* s.gettimeout() method.
    Returns the timeout associated with a socket. */
 static PyObject *
-sock_gettimeout(PySocketSockObject *s)
+sock_gettimeout(PySocketSockObject *s, void *Py_UNUSED(ignored))
 {
     if (s->sock_timeout < 0) {
         Py_INCREF(Py_None);

@@ -2524,7 +2524,7 @@ PyLong_FromUnicodeObject(PyObject *u, int base)
 /* forward */
 static PyLongObject *x_divrem
     (PyLongObject *, PyLongObject *, PyLongObject **);
-static PyObject *long_long(PyObject *v);
+static PyObject *long_long(PyObject *v, void *Py_UNUSED(ignored));
 
 /* Int division with remainder, top-level routine */
 
@@ -4563,7 +4563,7 @@ long_or(PyObject *a, PyObject *b)
 }
 
 static PyObject *
-long_long(PyObject *v)
+long_long(PyObject *v, void *Py_UNUSED(ignored))
 {
     if (PyLong_CheckExact(v))
         Py_INCREF(v);

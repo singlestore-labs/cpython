@@ -181,7 +181,7 @@ static PyMethodDef BaseException_methods[] = {
 };
 
 static PyObject *
-BaseException_get_args(PyBaseExceptionObject *self)
+BaseException_get_args(PyBaseExceptionObject *self, void *Py_UNUSED(ignored))
 {
     if (self->args == NULL) {
         Py_INCREF(Py_None);
@@ -207,7 +207,7 @@ BaseException_set_args(PyBaseExceptionObject *self, PyObject *val)
 }
 
 static PyObject *
-BaseException_get_tb(PyBaseExceptionObject *self)
+BaseException_get_tb(PyBaseExceptionObject *self, void *Py_UNUSED(ignored))
 {
     if (self->traceback == NULL) {
         Py_INCREF(Py_None);
@@ -236,7 +236,7 @@ BaseException_set_tb(PyBaseExceptionObject *self, PyObject *tb)
 }
 
 static PyObject *
-BaseException_get_context(PyObject *self) {
+BaseException_get_context(PyObject *self, void *Py_UNUSED(ignored)) {
     PyObject *res = PyException_GetContext(self);
     if (res)
         return res;  /* new reference already returned above */
@@ -263,7 +263,7 @@ BaseException_set_context(PyObject *self, PyObject *arg) {
 }
 
 static PyObject *
-BaseException_get_cause(PyObject *self) {
+BaseException_get_cause(PyObject *self, void *Py_UNUSED(ignored)) {
     PyObject *res = PyException_GetCause(self);
     if (res)
         return res;  /* new reference already returned above */

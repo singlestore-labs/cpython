@@ -1066,7 +1066,7 @@ float_round(PyObject *v, PyObject *args)
 }
 
 static PyObject *
-float_float(PyObject *v)
+float_float(PyObject *v, void *Py_UNUSED(ignored))
 {
     if (PyFloat_CheckExact(v))
         Py_INCREF(v);

@@ -4398,7 +4398,7 @@ PicklerMemoProxy_New(PicklerObject *pickler)
 /*****************************************************************************/
 
 static PyObject *
-Pickler_get_memo(PicklerObject *self)
+Pickler_get_memo(PicklerObject *self, void *Py_UNUSED(ignored))
 {
     return PicklerMemoProxy_New(self);
 }
@@ -4466,7 +4466,7 @@ Pickler_set_memo(PicklerObject *self, PyObject *obj)
 }
 
 static PyObject *
-Pickler_get_persid(PicklerObject *self)
+Pickler_get_persid(PicklerObject *self, void *Py_UNUSED(ignored))
 {
     if (self->pers_func == NULL)
         PyErr_SetString(PyExc_AttributeError, "persistent_id");
@@ -6836,7 +6836,7 @@ UnpicklerMemoProxy_New(UnpicklerObject *unpickler)
 
 
 static PyObject *
-Unpickler_get_memo(UnpicklerObject *self)
+Unpickler_get_memo(UnpicklerObject *self, void *Py_UNUSED(ignored))
 {
     return UnpicklerMemoProxy_New(self);
 }
@@ -6921,7 +6921,7 @@ Unpickler_set_memo(UnpicklerObject *self, PyObject *obj)
 }
 
 static PyObject *
-Unpickler_get_persload(UnpicklerObject *self)
+Unpickler_get_persload(UnpicklerObject *self, void *Py_UNUSED(ignored))
 {
     if (self->pers_func == NULL)
         PyErr_SetString(PyExc_AttributeError, "persistent_load");
