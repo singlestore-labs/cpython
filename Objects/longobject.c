@@ -2524,7 +2524,7 @@ PyLong_FromUnicodeObject(PyObject *u, int base)
 /* forward */
 static PyLongObject *x_divrem
     (PyLongObject *, PyLongObject *, PyLongObject **);
-static PyObject *long_long(PyObject *v, void *Py_UNUSED(ignored));
+static PyObject *long_long(PyObject *v);
 
 /* Int division with remainder, top-level routine */
 
@@ -4563,13 +4563,19 @@ long_or(PyObject *a, PyObject *b)
 }
 
 static PyObject *
-long_long(PyObject *v, void *Py_UNUSED(ignored))
+long_long(PyObject *v)
 {
     if (PyLong_CheckExact(v))
         Py_INCREF(v);
     else
         v = _PyLong_Copy((PyLongObject *)v);
     return v;
+}
+
+static PyObject *
+long_long_getter(PyObject *v, void *Py_UNUSED(ignored))
+{
+    return long_long(v);
 }
 
 PyObject *
@@ -5349,7 +5355,7 @@ static PyMethodDef long_methods[] = {
 
 static PyGetSetDef long_getset[] = {
     {"real",
-     (getter)long_long, (setter)NULL,
+     (getter)long_long_getter, (setter)NULL,
      "the real part of a complex number",
      NULL},
     {"imag",
