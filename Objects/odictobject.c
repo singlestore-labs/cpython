@@ -887,7 +887,7 @@ static int odict_init(PyObject *self, PyObject *args, PyObject *kwds);
 
 PyDoc_STRVAR(odict_iter__doc__, "od.__iter__() <==> iter(od)");
 
-static PyObject * odict_iter(PyODictObject *self);  /* forward */
+static PyObject * odict_iter(PyODictObject *self, void *);  /* forward */
 
 /* __ne__() */
 
@@ -1572,7 +1572,7 @@ odict_tp_clear(PyODictObject *od)
     PyObject *res;
     Py_CLEAR(od->od_inst_dict);
     Py_CLEAR(od->od_weakreflist);
-    res = odict_clear(od);
+    res = odict_clear(od, NULL);
     if (res == NULL)
         return -1;
     Py_DECREF(res);

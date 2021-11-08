@@ -1180,7 +1180,7 @@ frozenset_copy(PySetObject *so, void *Py_UNUSED(ignored))
         Py_INCREF(so);
         return (PyObject *)so;
     }
-    return set_copy(so);
+    return set_copy(so, NULL);
 }
 
 PyDoc_STRVAR(copy_doc, "Return a shallow copy of a set.");
@@ -1201,7 +1201,7 @@ set_union(PySetObject *so, PyObject *args)
     PyObject *other;
     Py_ssize_t i;
 
-    result = (PySetObject *)set_copy(so);
+    result = (PySetObject *)set_copy(so, NULL);
     if (result == NULL)
         return NULL;
 
@@ -1230,7 +1230,7 @@ set_or(PySetObject *so, PyObject *other)
     if (!PyAnySet_Check(so) || !PyAnySet_Check(other))
         Py_RETURN_NOTIMPLEMENTED;
 
-    result = (PySetObject *)set_copy(so);
+    result = (PySetObject *)set_copy(so, NULL);
     if (result == NULL)
         return NULL;
     if ((PyObject *)so == other)
@@ -1263,7 +1263,7 @@ set_intersection(PySetObject *so, PyObject *other)
     int rv;
 
     if ((PyObject *)so == other)
-        return set_copy(so);
+        return set_copy(so, NULL);
 
     result = (PySetObject *)make_new_set_basetype(Py_TYPE(so), NULL);
     if (result == NULL)
@@ -1336,7 +1336,7 @@ set_intersection_multi(PySetObject *so, PyObject *args)
     PyObject *result = (PyObject *)so;
 
     if (PyTuple_GET_SIZE(args) == 0)
-        return set_copy(so);
+        return set_copy(so, NULL);
 
     Py_INCREF(so);
     for (i=0 ; i<PyTuple_GET_SIZE(args) ; i++) {
@@ -1535,7 +1535,7 @@ set_copy_and_difference(PySetObject *so, PyObject *other)
 {
     PyObject *result;
 
-    result = set_copy(so);
+    result = set_copy(so, NULL);
     if (result == NULL)
         return NULL;
     if (set_difference_update_internal((PySetObject *) result, other) == 0)
@@ -1555,7 +1555,7 @@ set_difference(PySetObject *so, PyObject *other)
     int rv;
 
     if (PySet_GET_SIZE(so) == 0) {
-        return set_copy(so);
+        return set_copy(so, NULL);
     }
 
     if (!PyAnySet_Check(other)  && !PyDict_CheckExact(other)) {
@@ -1617,7 +1617,7 @@ set_difference_multi(PySetObject *so, PyObject *args)
     PyObject *result, *other;
 
     if (PyTuple_GET_SIZE(args) == 0)
-        return set_copy(so);
+        return set_copy(so, NULL);
 
     other = PyTuple_GET_ITEM(args, 0);
     result = set_difference(so, other);
@@ -1668,7 +1668,7 @@ set_symmetric_difference_update(PySetObject *so, PyObject *other)
     int rv;
 
     if ((PyObject *)so == other)
-        return set_clear(so);
+        return set_clear(so, NULL);
 
     if (PyDict_CheckExact(other)) {
         PyObject *value;
@@ -2366,7 +2366,7 @@ PySet_Pop(PyObject *set)
         PyErr_BadInternalCall();
         return NULL;
     }
-    return set_pop((PySetObject *)set);
+    return set_pop((PySetObject *)set, NULL);
 }
 
 int

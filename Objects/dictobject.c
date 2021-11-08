@@ -3126,9 +3126,9 @@ PyDoc_STRVAR(copy__doc__,
 "D.copy() -> a shallow copy of D");
 
 /* Forward */
-static PyObject *dictkeys_new(PyObject *);
-static PyObject *dictitems_new(PyObject *);
-static PyObject *dictvalues_new(PyObject *);
+static PyObject *dictkeys_new(PyObject *, void *);
+static PyObject *dictitems_new(PyObject *, void *);
+static PyObject *dictvalues_new(PyObject *, void *);
 
 PyDoc_STRVAR(keys__doc__,
              "D.keys() -> a set-like object providing a view on D's keys");
