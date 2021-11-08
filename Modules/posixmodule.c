@@ -1877,8 +1877,6 @@ stat_float_times(PyObject* self, PyObject *args)
     return Py_None;
 }
 
-static PyObject *billion = NULL;
-
 static void
 fill_time(PyObject *v, int index, time_t sec, unsigned long nsec)
 {
@@ -1891,9 +1889,14 @@ fill_time(PyObject *v, int index, time_t sec, unsigned long nsec)
     if (!(s && ns_fractional))
         goto exit;
 
+    PyObject *billion = PyLong_FromLong(1000000000);
+    if (!billion)
+	goto exit;
     s_in_ns = PyNumber_Multiply(s, billion);
+    Py_XDECREF(billion);
     if (!s_in_ns)
         goto exit;
+
 
     ns_total = PyNumber_Add(s_in_ns, ns_fractional);
     if (!ns_total)
@@ -4502,7 +4505,12 @@ split_py_long_to_s_and_ns(PyObject *py_long, time_t *s, long *ns)
 {
     int result = 0;
     PyObject *divmod;
+
+    PyObject *billion = PyLong_FromLong(1000000000);
+    if (!billion)
+	goto exit;
     divmod = PyNumber_Divmod(py_long, billion);
+    Py_XDECREF(billion);
     if (!divmod)
         goto exit;
     *s = _PyLong_AsTime_t(PyTuple_GET_ITEM(divmod, 0));
@@ -13085,10 +13093,6 @@ INITFUNC(void)
 
     Py_INCREF(&TerminalSizeType);
     PyModule_AddObject(m, "terminal_size", (PyObject*) &TerminalSizeType);
-
-    billion = PyLong_FromLong(1000000000);
-    if (!billion)
-        return NULL;
 
     /* suppress "function not used" warnings */
     {

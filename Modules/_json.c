@@ -1367,7 +1367,7 @@ encoder_init(PyObject *self, PyObject *args, PyObject *kwds)
     s->skipkeys = skipkeys;
     s->fast_encode = NULL;
     if (PyCFunction_Check(s->encoder)) {
-        PyCFunction f = PyCFunction_GetFunction(s->encoder);
+        PyCFunction f = PyCFunction_GetFunction(s->encoder, NULL);
         if (f == (PyCFunction)py_encode_basestring_ascii ||
                 f == (PyCFunction)py_encode_basestring) {
             s->fast_encode = f;
