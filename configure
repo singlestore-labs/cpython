@@ -3359,6 +3359,7 @@ if test "$cross_compiling" = yes; then
 		;;
 	*-*-vxworks*)
 		_host_cpu=$host_cpu
+                ;;
 	wasm32-*-*)
 		ac_sys_system=Wasm32
 		;;
