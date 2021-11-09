@@ -72,7 +72,7 @@ extern int _PyFaulthandler_Init(void);
 extern void _PyFaulthandler_Fini(void);
 extern void _PyHash_Fini(void);
 extern int _PyTraceMalloc_Init(void);
-extern int _PyTraceMalloc_Fini(void);
+extern void _PyTraceMalloc_Fini(void);
 
 #ifdef WITH_THREAD
 extern void _PyGILState_Init(PyInterpreterState *, PyThreadState *);
