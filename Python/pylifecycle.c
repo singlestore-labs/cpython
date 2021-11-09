@@ -20,6 +20,7 @@
 
 #include "grammar.h"              // PyGrammar_RemoveAccelerators()
 #include <locale.h>               // setlocale()
+#include <fcntl.h>                // fcntl()
 
 #ifdef HAVE_SIGNAL_H
 #  include <signal.h>             // SIG_IGN
@@ -47,7 +48,9 @@ _Py_IDENTIFIER(stderr);
 _Py_IDENTIFIER(threading);
 
 int dup(int x) {
-	return -1;
+    fprintf(stderr, "dup() is unsupported when running in WASM. Raising SIGABRT.");
+    raise(SIGABRT);
+    return -1;
 }
 
 #ifdef __cplusplus
@@ -1742,35 +1745,10 @@ init_import_site(void)
 static int
 is_valid_fd(int fd)
 {
-/* dup() is faster than fstat(): fstat() can require input/output operations,
-   whereas dup() doesn't. There is a low risk of EMFILE/ENFILE at Python
-   startup. Problem: dup() doesn't check if the file descriptor is valid on
-   some platforms.
-
-   bpo-30225: On macOS Tiger, when stdout is redirected to a pipe and the other
-   side of the pipe is closed, dup(1) succeed, whereas fstat(1, &st) fails with
-   EBADF. FreeBSD has similar issue (bpo-32849).
-
-   Only use dup() on platforms where dup() is enough to detect invalid FD in
-   corner cases: on Linux and Windows (bpo-32849). */
-#if defined(__linux__) || defined(MS_WINDOWS)
-    if (fd < 0) {
-        return 0;
-    }
-    int fd2;
-
     _Py_BEGIN_SUPPRESS_IPH
-    fd2 = dup(fd);
-    if (fd2 >= 0) {
-        close(fd2);
-    }
-    _Py_END_SUPPRESS_IPH
-
-    return (fd2 >= 0);
-#else
-    struct stat st;
-    return (fstat(fd, &st) == 0);
-#endif
+    int ret = fcntl(fd, F_GETFD);
+    _Py_BEGIN_SUPPRESS_IPH
+    return ret != -1 || errno != EBADF;
 }
 
 /* returns Py_None if the fd is not valid */
