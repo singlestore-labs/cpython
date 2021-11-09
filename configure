@@ -10980,8 +10980,8 @@ if test "x$ac_cv_lib_cma_pthread_create" = xyes; then :
     LIBS="$LIBS -lcma"
 
 else
-
-    as_fn_error $? "could not find pthreads on your system" "$LINENO" 5
+    posix_threads=yes
+    # as_fn_error $? "could not find pthreads on your system" "$LINENO" 5
 
 fi
 
