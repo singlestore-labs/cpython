@@ -17,6 +17,11 @@
 # endif
 #endif
 
+// WIP
+void* __pthread_key_values[PTHREAD_MAX_KEYS] = {};
+size_t __pthread_key_next_slot = 0;
+
+
 #ifndef DONT_HAVE_STDIO_H
 #include <stdio.h>
 #endif

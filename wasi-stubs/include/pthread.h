@@ -82,6 +82,10 @@ extern "C" {
 
 #define PTHREAD_NULL ((pthread_t)0)
 
+// static inline definitions can't follow non-static declarations, but *can* precede them.
+//
+#include "pthread_stubs.h"
+
 int pthread_create(pthread_t *__restrict, const pthread_attr_t *__restrict, void *(*)(void *), void *__restrict);
 int pthread_detach(pthread_t);
 _Noreturn void pthread_exit(void *);
