@@ -5986,6 +5986,10 @@ $as_echo "#define Py_ENABLE_SHARED 1" >>confdefs.h
 	LDLIBRARY='libpython$(LDVERSION).so'
 	RUNSHARED=LIBPATH=`pwd`${LIBPATH:+:${LIBPATH}}
 	;;
+    Wasm32*)
+	LDLIBRARY='libpython$(LDVERSION).so'
+	RUNSHARED=LIBPATH=`pwd`${LIBPATH:+:${LIBPATH}}
+	;;
 
   esac
 else # shared is disabled
@@ -9598,6 +9602,9 @@ then
 	CYGWIN*)
 		LDSHARED="gcc -shared -Wl,--enable-auto-image-base"
 		LDCXXSHARED="g++ -shared -Wl,--enable-auto-image-base";;
+        Wasm32*)
+                LDSHARED="clang -Wl,--shared"
+                LDCXXSHARED="clang++ -Wl,--shared";;
 	*)	LDSHARED="ld";;
 	esac
 fi
@@ -9636,7 +9643,9 @@ then
 		else CCSHARED="-Kpic -belf"
 		fi;;
 	VxWorks*)
-		CCSHARED="-fpic -D__SO_PICABILINUX__  -ftls-model=global-dynamic"
+	        CCSHARED="-fpic -D__SO_PICABILINUX__  -ftls-model=global-dynamic";;
+        Wasm32*)
+                CCSHARED="-fpic"
 	esac
 fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: $CCSHARED" >&5
@@ -9712,10 +9721,12 @@ if test ! "$LIBRARY" = "$LDLIBRARY"
 then
 	case $ac_sys_system in
 	CYGWIN*)
+                $as_echo "TRON1" >&6;
 		# Cygwin needs CCSHARED when building extension DLLs
 		# but not when building the interpreter DLL.
 		CFLAGSFORSHARED='';;
 	*)
+                $as_echo "TRON2" >&6;
 		CFLAGSFORSHARED='$(CCSHARED)'
 	esac
 fi
